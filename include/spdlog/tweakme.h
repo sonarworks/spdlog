@@ -120,5 +120,9 @@
 // __PRETTY_FUNCTION__ might be nicer in clang/gcc, and __FUNCTION__ in msvc.
 // Defaults to __FUNCTION__ (should work on all compilers) if not defined.
 //
-// #define SPDLOG_FUNCTION __PRETTY_FUNCTION__
+#ifdef WIN32
+   #define SPDLOG_FUNCTION __FUNCTION__
+#else
+   #define SPDLOG_FUNCTION __PRETTY_FUNCTION__
+#endif
 ///////////////////////////////////////////////////////////////////////////////
