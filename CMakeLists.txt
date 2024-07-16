@@ -147,6 +147,13 @@ else()
     add_library(spdlog STATIC ${SPDLOG_SRCS} ${SPDLOG_ALL_HEADERS})
 endif()
 
+if(APPLE)
+    set_target_properties(spdlog PROPERTIES
+        XCODE_ATTRIBUTE_GCC_SYMBOLS_PRIVATE_EXTERN YES
+        XCODE_ATTRIBUTE_GCC_INLINES_ARE_PRIVATE_EXTERN YES
+    )
+endif()
+
 add_library(spdlog::spdlog ALIAS spdlog)
 
 target_compile_definitions(spdlog PUBLIC SPDLOG_COMPILED_LIB)
